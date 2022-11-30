@@ -1,5 +1,5 @@
 import { Body, Controller, HttpCode, Post } from '@nestjs/common';
-import { CreateInvoiceDto } from '../dtos/request/create-invoice.dto';
+import { CreateInvoiceDto } from '../dtos/input/create-invoice.dto';
 import { InvoiceService } from '../services/invoice.service';
 import { MessageResponse } from '../types/messageResponse.type';
 
