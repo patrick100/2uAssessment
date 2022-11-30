@@ -24,38 +24,39 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+This project is a challenge for USTAR.
+
+## Built with
+
+- NodeJS v16.13
+- NestJS
+- Docker
+- TypeORM
+- PostgreSQL
+
+## Prerequisites
+
+Install the following dependency:
+
+- [Docker](https://docs.docker.com/get-docker/)
 
 ## Installation
 
-```bash
-$ npm install
+Create a copy of .env.example with the name `.env`, placed it at the root of the project, and replace its values with your own credentials (they can be random values).
+
+```
+DB_NAME=
+DB_USERNAME=
+DB_PASSWORD=
 ```
 
 ## Running the app
 
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
-```
-
-## Test
+2. Run the following commands inside the project:
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+# build and run the project
+$ docker-compose up --build
 ```
 
 ## Support
