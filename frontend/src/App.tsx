@@ -16,6 +16,7 @@ const App: React.FC = () => {
           <Route path="/invoices" element={<Invoices />} />
         </Routes>
       </Router>
+      ,
     </>
   )
 }
