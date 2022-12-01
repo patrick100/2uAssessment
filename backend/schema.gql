@@ -22,6 +22,10 @@ type Query {
   getAllInvoices(status: String!): [InvoiceModel!]!
 }
 
+type Mutation {
+  updateInvoice(uuid: ID!): InvoiceModel!
+}
+
 type Subscription {
   invoiceCreated: InvoiceModel!
 }

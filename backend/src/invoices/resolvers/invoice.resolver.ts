@@ -1,5 +1,12 @@
 import { Inject } from '@nestjs/common';
-import { Resolver, Query, Args, Subscription, Mutation } from '@nestjs/graphql';
+import {
+  Resolver,
+  Query,
+  Args,
+  Subscription,
+  Mutation,
+  ID,
+} from '@nestjs/graphql';
 import { PubSub } from 'graphql-subscriptions';
 import { PUB_SUB } from '../../pub-sub/pub-sub.module';
 import { InvoiceModel } from '../dtos/model/invoice.model';
@@ -17,6 +24,13 @@ export class InvoiceResolver {
     @Args('status') status: string,
   ): Promise<InvoiceModel[]> {
     return this.invoiceService.getAll(status);
+  }
+
+  @Mutation(() => InvoiceModel, { name: 'updateInvoice' })
+  async updateInvoice(
+    @Args('uuid', { type: () => ID }) uuid: string,
+  ): Promise<InvoiceModel> {
+    return this.invoiceService.update(uuid);
   }
 
   @Subscription((returns) => InvoiceModel)
