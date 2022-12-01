@@ -1,16 +1,26 @@
-import { Resolver, Query, Args } from '@nestjs/graphql';
+import { Inject } from '@nestjs/common';
+import { Resolver, Query, Args, Subscription, Mutation } from '@nestjs/graphql';
+import { PubSub } from 'graphql-subscriptions';
+import { PUB_SUB } from '../../pub-sub/pub-sub.module';
 import { InvoiceModel } from '../dtos/model/invoice.model';
-import { Invoice } from '../entities/invoice.entity';
 import { InvoiceService } from '../services/invoice.service';
 
-@Resolver(Invoice)
+@Resolver(InvoiceModel)
 export class InvoiceResolver {
-  constructor(private invoiceService: InvoiceService) {}
+  constructor(
+    private invoiceService: InvoiceService,
+    @Inject(PUB_SUB) private pubSub: PubSub,
+  ) {}
 
   @Query(() => [InvoiceModel], { name: 'getAllInvoices' })
   async getAllInvoices(
     @Args('status') status: string,
   ): Promise<InvoiceModel[]> {
     return this.invoiceService.getAll(status);
+  }
+
+  @Subscription((returns) => InvoiceModel)
+  invoiceCreated() {
+    return this.pubSub.asyncIterator('invoiceCreated');
   }
 }

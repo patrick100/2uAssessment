@@ -21,3 +21,7 @@ scalar DateTime
 type Query {
   getAllInvoices(status: String!): [InvoiceModel!]!
 }
+
+type Subscription {
+  invoiceCreated: InvoiceModel!
+}
